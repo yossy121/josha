@@ -12,7 +12,7 @@ development:
   adapter: mysql2
   encoding: utf8
   reconnect: false
-  database: mydb
+  database: josha
   pool: 5
   username: dbuser
   password: 3sSU9sWdPCWmwpVSv6j

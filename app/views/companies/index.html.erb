@@ -1,0 +1,17 @@
+<h1>会社一覧</h1>
+<table>
+  <tbody>
+    <tr>
+      <th>会社名</th>
+      <th>路線一覧</th>
+      <th>駅一覧</th>
+    </tr>
+    <% @companies.each do |c| %>
+    <tr>
+      <td><%= c.name %></td>
+      <td><%= c.name %> 路線一覧</td>
+      <td><%= c.name %> 会社一覧</td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>

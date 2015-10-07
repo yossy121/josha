@@ -1,0 +1,31 @@
+<h1><%= @Company.name %> 路線一覧</h1>
+<table border="1">
+  <col span="1" width="150" />
+  <col span="2" width="200" />
+  <tbody>
+    <tr>
+      <th rowspan="2">路線名</th>
+      <th rowspan="2">開始駅</th>
+      <th rowspan="2">終了駅</th>
+      <th colspan="3">現存区間</th>
+      <th>廃止区間</th>
+    </tr>
+    <tr>
+      <th>営業キロ</th>
+      <th>乗車キロ</th>
+      <th>乗車率</th>
+      <th>乗車キロ</th>
+    </tr>
+    <% @Rosens.each do |r| %>
+    <tr>
+      <td><%= r.name %></td>
+      <td><%= r.start_station.name %></td>
+      <td><%= r.end_station.name %></td>
+      <td><%= r.kilo %></td>
+      <td>-.-</td>
+      <td>0.0</td>
+      <td>-.-</td>
+   </tr>
+   <% end %>
+  </tbody>
+</table>

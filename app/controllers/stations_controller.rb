@@ -4,6 +4,6 @@ class StationsController < ApplicationController
 
   def show
     @Company = Company.find(params[:company_id])
-    @Stations = Station.where(["company_id = ? and delete_flag = ?", params[:company_id], 0]).order(:name_ruby)
+    @Stations = Station.eager_load(:state).where(["stations.company_id = ? and stations.delete_flag = ?", params[:company_id], 0]).order(:name_ruby)
   end
 end

@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  get 'rosens/index'
+
+  get 'rosens/show'
+
   get 'stations/index'
 
   get 'stations/show'
@@ -18,6 +22,7 @@ Rails.application.routes.draw do
   match '/signout', to: 'sessions#destroy', via: 'delete'
 
   get '/companies/:company_id/stations' => 'stations#show'
+  get '/companies/:company_id/rosens' => 'rosens#show'
   get '/user/:name' => 'users#show'
 
   root 'users#index'

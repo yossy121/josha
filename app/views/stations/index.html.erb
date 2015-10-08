@@ -1,2 +1,17 @@
-<h1>Stations#index</h1>
-<p>Find me in app/views/stations/index.html.erb</p>
+<h1><%= @Company.name %> 駅一覧</h1>
+<table border="1">
+  <tbody>
+    <tr>
+      <th>駅名</th>
+      <th>ふりがな</th>
+      <th>都道府県</th>
+    </tr>
+    <% @Stations.each do |s| %>
+    <tr>
+      <td><%= s.name %></td>
+      <td><%= s.name_ruby %></td>
+      <td><%= s.state.name %></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>

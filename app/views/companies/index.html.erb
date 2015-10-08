@@ -9,8 +9,8 @@
     <% @companies.each do |c| %>
     <tr>
       <td><%= c.name %></td>
-      <td><%= c.name %> 路線一覧</td>
-      <td><%= c.name %> 会社一覧</td>
+      <td><%= link_to "#{c.name} 路線一覧", rosen_index_path(c) %></td>
+      <td><%= link_to "#{c.name} 駅一覧", station_index_path(c) %></td>
     </tr>
     <% end %>
   </tbody>

@@ -10,8 +10,8 @@
     </tr>
     <% @Sections.each do |s| %>
     <tr>
-      <td><%= s.start_station.name %></td>
-      <td><%= s.end_station.name %></td>
+      <td><%= link_to s.start_station.name, station_detail_path(s.start_station.id) %></td>
+      <td><%= link_to s.end_station.name, station_detail_path(s.end_station.id) %></td>
       <td><%= s.kilo %></td>
    </tr>
    <% end %>

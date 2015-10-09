@@ -1,3 +1,4 @@
+<% provide(:title, @Company.name + ' 駅一覧') %>
 <h1><%= @Company.name %> 駅一覧</h1>
 <table border="1">
   <tbody>
@@ -8,7 +9,7 @@
     </tr>
     <% @Stations.each do |s| %>
     <tr>
-      <td><%= s.name %></td>
+      <td><%= link_to s.name, station_detail_path(s) %></td>
       <td><%= s.name_ruby %></td>
       <td><%= s.state.name %></td>
     </tr>

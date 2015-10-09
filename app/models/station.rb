@@ -1,5 +1,6 @@
 class Station < ActiveRecord::Base
   # 従属関係
+  has_many :user_station_statuses
   belongs_to :state
   belongs_to :company
 

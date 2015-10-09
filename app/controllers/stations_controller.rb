@@ -5,5 +5,6 @@ class StationsController < ApplicationController
   end
 
   def show
+    @Station = Station.eager_load(:state, :company).find(params[:station_id])
   end
 end

@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   get '/companies/:company_id/stations' => 'stations#index', as: 'station_index'
   get '/companies/:company_id/rosens' => 'rosens#index', as: 'rosen_index'
 
+  get '/stations/:station_id' => 'stations#show', as: 'station_detail'
   get '/rosens/:rosen_id' => 'rosens#show', as: 'rosen_detail'
 
   get '/user/:name' => 'users#show'

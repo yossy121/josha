@@ -1,23 +1,42 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>＜新・鉄道乗りつぶし記録＞ | <%= yield(:title) %></title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
-</head>
-<body>
-
 
   <% if signed_in? %>
+  <title>＜新・鉄道乗りつぶし記録＞ | <%= yield(:title) %></title>
+</head>
+<body>
 <ul>
   <li><%= link_to 'プロフィール', current_user %></li>
   <li><%= link_to 'ログアウト', signout_path, method: :delete %></li>
 </ul>
+  <%= yield %>
+
   <% else %>
+  <title>＜新・鉄道乗りつぶし記録＞ | ログイン</title>
+</head>
+<body>
+<h1>ログイン</h1>
+
+<%= form_for(:session, url: sessions_path) do |f| %>
+
+  <table border="1">
+    <tr>
+      <th><%= f.label :email, 'メールアドレス' %></th>
+      <td><%= f.text_field :email %></td>
+    </tr>
+    <tr>
+      <th><%= f.label :password, 'パスワード' %></th>
+      <td><%= f.password_field :password %></td>
+    </tr>
+  </table>
+
+  <%= f.submit 'ログインする' %>
+
+<% end %>
   <% end %>
-
-<%= yield %>
-
 </body>
 </html>

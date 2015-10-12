@@ -75,23 +75,23 @@ ActiveRecord::Schema.define(version: 20151009084711) do
   end
 
   create_table "user_section_statuses", force: :cascade do |t|
-    t.integer  "user_id",     limit: 4
-    t.integer  "section_id",  limit: 4
+    t.integer  "user_id",     limit: 4,             null: false
+    t.integer  "section_id",  limit: 4,             null: false
     t.date     "ride_day"
-    t.integer  "ride_chk",    limit: 4
-    t.integer  "delete_flag", limit: 4
-    t.datetime "created_at",            null: false
-    t.datetime "updated_at",            null: false
+    t.integer  "ride_chk",    limit: 4, default: 0
+    t.integer  "delete_flag", limit: 4, default: 0, null: false
+    t.datetime "created_at",                        null: false
+    t.datetime "updated_at",                        null: false
   end
 
   create_table "user_station_statuses", force: :cascade do |t|
-    t.integer  "user_id",     limit: 4
-    t.integer  "station_id",  limit: 4
+    t.integer  "user_id",     limit: 4,             null: false
+    t.integer  "station_id",  limit: 4,             null: false
     t.date     "visit_day"
-    t.integer  "visit_chk",   limit: 4
-    t.integer  "delete_flag", limit: 4
-    t.datetime "created_at",            null: false
-    t.datetime "updated_at",            null: false
+    t.integer  "visit_chk",   limit: 4, default: 0
+    t.integer  "delete_flag", limit: 4, default: 0, null: false
+    t.datetime "created_at",                        null: false
+    t.datetime "updated_at",                        null: false
   end
 
   create_table "users", force: :cascade do |t|

@@ -1,14 +1,15 @@
 class UsersController < ApplicationController
   before_action :signed_in_user, only: [:edit, :update]
   before_action :correct_user, only: [:edit, :update]
+  layout "notsignin", only: [:new]
 
   def index
     @users = User.all
   end
 
   def show
-    @user = User.find_by(:name => params[:id])
-#    @user = User.find(params[:id])
+#    @user = User.find_by(:name => params[:id])
+    @user = User.find(params[:id])
   end
 
   def new
@@ -22,7 +23,8 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       sign_in @user
-      redirect_to @user
+      redirect_to controller: 'companies', action: 'index'
+#      redirect_to @user
     else
       render 'new'
     end
@@ -43,8 +45,8 @@ class UsersController < ApplicationController
     end
 
     def correct_user
-      @user = User.find_by(:name => params[:id])
-#      @user = User.find(params[:id])
+#      @user = User.find_by(:name => params[:id])
+      @user = User.find(params[:id])
       redirect_to root_url unless current_user?(@user)
     end
 end

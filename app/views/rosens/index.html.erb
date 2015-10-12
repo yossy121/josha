@@ -22,10 +22,10 @@
       <td><%= link_to r.name, rosen_detail_path(r) %></td>
       <td><%= r.start_station.name %></td>
       <td><%= r.end_station.name %></td>
-      <td><%= r.kilo %></td>
-      <td>-.-</td>
-      <td>0.0</td>
-      <td></td>
+      <td class="kilo"><%= r.kilo %></td>
+      <td class="kilo">-.-</td>
+      <td class="kilo">0.0</td>
+      <td class="kilo"></td>
    </tr>
    <% end %>
   </tbody>

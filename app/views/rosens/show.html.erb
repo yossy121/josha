@@ -12,7 +12,7 @@
     <tr>
       <td><%= link_to s.start_station.name, station_detail_path(s.start_station.id) %></td>
       <td><%= link_to s.end_station.name, station_detail_path(s.end_station.id) %></td>
-      <td><%= s.kilo %></td>
+      <td class="kilo"><%= s.kilo %></td>
    </tr>
    <% end %>
   </tbody>

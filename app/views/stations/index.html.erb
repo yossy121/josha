@@ -6,12 +6,18 @@
       <th>駅名</th>
       <th>ふりがな</th>
       <th>都道府県</th>
+      <th>訪問日</th>
+      <th>訪問チェック</th>
     </tr>
     <% @Stations.each do |s| %>
     <tr>
       <td><%= link_to s.name, station_detail_path(s) %></td>
       <td><%= s.name_ruby %></td>
       <td><%= s.state.name %></td>
+        <% s.user_station_statuses.each do |u| %>
+      <td><%= u.visit_day %></td>
+      <td><% if u.visit_chk? %>●<%  end %></td>
+        <% end %>
     </tr>
     <% end %>
   </tbody>

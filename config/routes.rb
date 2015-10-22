@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  get 'dashboards/show'
+  get 'dashboards' => 'dashboards#show', as: 'dashboard'
 
   get 'static_pages/about'
   get 'static_pages/home'

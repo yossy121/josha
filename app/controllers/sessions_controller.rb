@@ -8,7 +8,7 @@ class SessionsController < ApplicationController
       sign_in user
 # edit at 2015-10-11 change redirect_to
 #      redirect_to user
-      redirect_to controller: 'dashboards', action: 'index'
+      redirect_to controller: 'dashboards', action: 'show'
     else
       render 'new'
     end
@@ -16,7 +16,7 @@ class SessionsController < ApplicationController
 
   def destroy
     sign_out
-    redirect_to root_url
+    redirect_to signin_path
   end
 end
 

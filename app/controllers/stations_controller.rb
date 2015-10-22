@@ -6,5 +6,6 @@ class StationsController < ApplicationController
 
   def show
     @Station = Station.eager_load(:state, :company).find(params[:station_id])
+    @Status = Station.eager_load(:state, :company, :user_station_statuses).where(["stations.id = ? and user_station_statuses.station_id = ? and user_station_statuses.user_id = ?", params[:station_id], params[:station_id], current_user.id])
   end
 end

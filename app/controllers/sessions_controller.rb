@@ -8,7 +8,7 @@ class SessionsController < ApplicationController
       sign_in user
 # edit at 2015-10-11 change redirect_to
 #      redirect_to user
-      redirect_to controller: 'companies', action: 'index'
+      redirect_to controller: 'dashboards', action: 'index'
     else
       render 'new'
     end

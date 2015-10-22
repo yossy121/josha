@@ -7,4 +7,27 @@
   <dd><%= @Station.state.name %></dd>
   <dt>会社名<dt>
   <dd><%= @Station.company.name %></dd>
+  <p class="s_title">訪問記録</p>
+  <form action="edit_station_detail.php" method="post">
+  <table border="1">
+    <col span="2" width="75" />
+    <tbody>
+      <tr>
+        <th>訪問日</th>
+        <th>訪問チェック</th>
+        <th>編集ボタン</th>
+      </tr>
+    <% @Status.each do |s| %>
+        <% s.user_station_statuses.each do |u| %>
+      <tr>
+        <td class="date"><%= u.visit_day %></td>
+        <td class="chk"><% if u.visit_chk? %>●<%  end %></td>
+        <td><input type="hidden" name="edit" value="0" /><input type="hidden" name="station" value="1" /><input type="submit" value="編集画面へ" /></td>
+      </tr>
+        <% end %>
+    <% end %>
+    </tbody>
+  </table>
+  </form>
 </dl>
+</div>

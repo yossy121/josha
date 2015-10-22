@@ -10,7 +10,8 @@
 </head>
 <body>
 <ul>
-  <li><%= link_to 'プロフィール', current_user %></li>
+  <li><%= link_to 'ダッシュボード', :controller => 'dashboards', :action => 'index' %></li>
+  <li><%= link_to '日本国内鉄道会社一覧', :controller => 'companies', :action => 'index' %></li>
   <li><%= link_to 'ログアウト', signout_path, method: :delete %></li>
 </ul>
   <%= yield %>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151009084711) do
+ActiveRecord::Schema.define(version: 20151026010242) do
 
   create_table "categories", force: :cascade do |t|
     t.string   "name",        limit: 255,             null: false
@@ -72,6 +72,16 @@ ActiveRecord::Schema.define(version: 20151009084711) do
     t.integer  "delete_flag",    limit: 4,   default: 0, null: false
     t.datetime "created_at",                             null: false
     t.datetime "updated_at",                             null: false
+  end
+
+  create_table "user_rosen_statuses", force: :cascade do |t|
+    t.integer  "user_id",           limit: 4
+    t.integer  "rosen_id",          limit: 4
+    t.decimal  "ride_kilo_sum",               precision: 10
+    t.decimal  "ride_abo_kilo_sum",           precision: 10
+    t.integer  "delete_flag",       limit: 4
+    t.datetime "created_at",                                 null: false
+    t.datetime "updated_at",                                 null: false
   end
 
   create_table "user_section_statuses", force: :cascade do |t|

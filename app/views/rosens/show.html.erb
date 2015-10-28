@@ -1,19 +1,35 @@
+<% provide(:title, @Rosen.name + ' ' + @Rosen.start_station.name + '～' + @Rosen.end_station.name + ' 駅間詳細') %>
 <h1><%= @Rosen.name %> （<%= @Rosen.start_station.name %>～<%= @Rosen.end_station.name %>）駅間詳細</h1>
 <table border="1">
+  <col span="1" width="35" />
   <col span="2" width="200" />
-  <col span="1" width="75" />
+  <col span="3" width="75" />
   <tbody>
     <tr>
+      <th>ID</th>
       <th>開始駅</th>
       <th>終了駅</th>
       <th>営業キロ</th>
+      <th>乗車日</th>
+      <th>乗車チェック</th>
     </tr>
     <% @Sections.each do |s| %>
     <tr>
+      <td><%= s.id %></td>
       <td><%= link_to s.start_station.name, station_detail_path(s.start_station.id) %></td>
       <td><%= link_to s.end_station.name, station_detail_path(s.end_station.id) %></td>
       <td class="kilo"><%= s.kilo %></td>
-   </tr>
-   <% end %>
+        <% s.user_section_statuses.each do |u| %>
+      <td class="date"><%= u.ride_day %></td>
+      <td class="chk"><% if u.ride_chk? %>●<%  end %></td>
+        <% end %>
+    </tr>
+    <% end %>
+    <tr>
+      <td colspan="3" class="foot">合計</td>
+      <td class="kilo"><%= @Rosen.kilo %></td>
+      <td class="foot">乗車キロ</td>
+      <td class="kilo"><%= @Section_sum %></td>
+    </tr>
   </tbody>
 </table>

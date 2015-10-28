@@ -15,8 +15,8 @@
       <td><%= s.name_ruby %></td>
       <td><%= s.state.name %></td>
         <% s.user_station_statuses.each do |u| %>
-      <td><%= u.visit_day %></td>
-      <td><% if u.visit_chk? %>●<%  end %></td>
+      <td class="date"><%= u.visit_day %></td>
+      <td class="chk"><% if u.visit_chk? %>●<% end %></td>
         <% end %>
     </tr>
     <% end %>

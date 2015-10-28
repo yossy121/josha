@@ -21,5 +21,5 @@ Rails.application.routes.draw do
   get '/stations/:station_id' => 'stations#show', as: 'station_detail'
   get '/rosens/:rosen_id' => 'rosens#show', as: 'rosen_detail'
 
-  root 'dashboards#index'
+  root 'dashboards#show'
 end

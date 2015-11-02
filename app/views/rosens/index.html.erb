@@ -1,44 +1,48 @@
 <% provide(:title, @Company.name + ' 路線一覧') %>
-<h1><%= @Company.name %> 路線一覧</h1>
-<table border="1">
-  <col span="1" width="35" />
-  <col span="1" width="150" />
-  <col span="2" width="200" />
-  <tbody>
-    <tr>
-      <th rowspan="2">ID</th>
-      <th rowspan="2">路線名</th>
-      <th rowspan="2">開始駅</th>
-      <th rowspan="2">終了駅</th>
-      <th colspan="3">現存区間</th>
-      <th>廃止区間</th>
-    </tr>
-    <tr>
-      <th>営業キロ</th>
-      <th>乗車キロ</th>
-      <th>乗車率</th>
-      <th>乗車キロ</th>
-    </tr>
+<header>
+  <h1 id="show"><%= @Company.name %> 路線一覧</h1>
+</header>
+<article>
+  <table border="1">
+    <col span="1" width="35" />
+    <col span="1" width="150" />
+    <col span="2" width="200" />
+    <tbody>
+      <tr>
+        <th rowspan="2">ID</th>
+        <th rowspan="2">路線名</th>
+        <th rowspan="2">開始駅</th>
+        <th rowspan="2">終了駅</th>
+        <th colspan="3">現存区間</th>
+        <th>廃止区間</th>
+      </tr>
+      <tr>
+        <th>営業キロ</th>
+        <th>乗車キロ</th>
+        <th>乗車率</th>
+        <th>乗車キロ</th>
+      </tr>
     <% @Rosens.each do |r| %>
-    <tr>
-      <td><%= r.id %></td>
-      <td><%= link_to r.name, rosen_detail_path(r) %></td>
-      <td><%= r.start_station.name %></td>
-      <td><%= r.end_station.name %></td>
-      <td class="kilo"><%= r.kilo %></td>
+      <tr>
+        <td><%= r.id %></td>
+        <td><%= link_to r.name, rosen_detail_path(r) %></td>
+        <td><%= r.start_station.name %></td>
+        <td><%= r.end_station.name %></td>
+        <td class="kilo"><%= r.kilo %></td>
         <% r.user_rosen_statuses.each do |u| %>
-      <td class="kilo"><%= u.ride_kilo_sum %></td>
-      <td class="kilo"><%= ((u.ride_kilo_sum / r.kilo) * 100).round(3) %>%</td>
-      <td class="kilo"><%= u.ride_abo_kilo_sum %></td>
+        <td class="kilo"><%= u.ride_kilo_sum %></td>
+        <td class="kilo"><%= number_with_precision((u.ride_kilo_sum / r.kilo) * 100, :precision => 3) %>%</td>
+        <td class="kilo"><%= u.ride_abo_kilo_sum %></td>
         <% end %>
-    </tr>
+      </tr>
     <% end %>
-    <tr>
-      <td colspan="4" class="foot">合計</td>
-      <td class="kilo"><%= @Rosen_sum %></td>
-      <td class="kilo"><%= @Ride_sum %></td>
-      <td class="kilo"><%= ((@Ride_sum / @Rosen_sum) * 100).round(3) %>%</td>
-      <td class="kilo"><%= @Ride_abo_sum %></td>
-    </tr>
-  </tbody>
-</table>
+      <tr>
+        <td colspan="4" class="foot">合計</td>
+        <td class="kilo"><%= @Rosen_sum %></td>
+        <td class="kilo"><%= @Ride_sum %></td>
+        <td class="kilo"><%= number_with_precision((@Ride_sum / @Rosen_sum) * 100, :precision => 3) %>%</td>
+        <td class="kilo"><%= @Ride_abo_sum %></td>
+      </tr>
+    </tbody>
+  </table>
+</article>

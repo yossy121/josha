@@ -1,18 +1,22 @@
 <% provide(:title, '日本国内鉄道会社一覧') %>
-<h1>日本国内鉄道会社一覧</h1>
-<table border="1">
-  <tbody>
-    <tr>
-      <th>会社名</th>
-      <th>路線一覧</th>
-      <th>駅一覧</th>
-    </tr>
+<header>
+  <h1 id="show">日本国内鉄道会社一覧</h1>
+</header>
+<article>
+  <table border="1">
+    <tbody>
+      <tr>
+        <th>会社名</th>
+        <th>路線一覧</th>
+        <th>駅一覧</th>
+      </tr>
     <% @companies.each do |c| %>
-    <tr>
-      <td><%= c.name %></td>
-      <td><%= link_to "#{c.name} 路線一覧", rosen_index_path(c) %></td>
-      <td><%= link_to "#{c.name} 駅一覧", station_index_path(c) %></td>
-    </tr>
+      <tr>
+        <td><%= c.name %></td>
+        <td><%= link_to "#{c.name} 路線一覧", rosen_index_path(c) %></td>
+        <td><%= link_to "#{c.name} 駅一覧", station_index_path(c) %></td>
+      </tr>
     <% end %>
-  </tbody>
-</table>
+    </tbody>
+  </table>
+</article>

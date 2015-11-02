@@ -1,0 +1,23 @@
+<% provide(:title, '都道府県一覧') %>
+<header>
+  <h1 id="show">都道府県一覧</h1>
+</header>
+<article>
+  <table border="1">
+  <col span="3" width="150" />
+    <tbody>
+      <tr>
+        <th>都道府県名</th>
+        <th>駅間詳細</th>
+        <th>駅一覧</th>
+      </tr>
+    <% @States.each do |s| %>
+      <tr>
+        <td><%= s.name %></td>
+        <td><%= s.name %> 駅間詳細<%# link_to "#{c.name} 路線一覧", rosen_index_path(c) %></td>
+        <td><%= s.name %> 駅一覧<%# link_to "#{c.name} 駅一覧", station_index_path(c) %></td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+</article>

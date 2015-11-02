@@ -7,7 +7,7 @@ class Section < ActiveRecord::Base
 
   scope :rosen_is, -> (rosen_id) { where(["sections.rosen_id = ? and sections.delete_flag = ?", rosen_id, 0]) }
   scope :section_user_is, -> (user_id) { where("user_section_statuses.user_id = ?", user_id) }
-  scope :ride_true, -> { where("user_section_statuses.ride_chk = ?", 1) }
+  scope :ride_true, -> { where("user_section_statuses.ride_chk = ? and user_section_statuses.delete_flag = ?", 1, 0) }
 
   enum abolished_flag: {not_abolished: 0, abolished: 1}
   enum delete_flag: {not_delete: 0, deleted: 1}

@@ -9,19 +9,23 @@
   <title>＜新・鉄道乗りつぶし記録＞ | <%= yield(:title) %></title>
 </head>
 <body>
-<ul>
-  <li><%= link_to 'ダッシュボード', :controller => 'dashboards', :action => 'show' %></li>
-  <li><%= link_to '日本国内鉄道会社一覧', :controller => 'companies', :action => 'index' %></li>
-  <li><%= link_to 'ログアウト', signout_path, method: :delete %></li>
-</ul>
-  <%= yield %>
+<nav>
+  <ul>
+    <li><%= link_to 'ダッシュボード', :controller => 'dashboards', :action => 'show' %></li>
+    <li><%= link_to '日本国内鉄道会社一覧', :controller => 'companies', :action => 'index' %></li>
+    <li><%= link_to '都道府県一覧', :controller => 'states', :action => 'index' %></li>
+    <li><%= link_to 'ログアウト', signout_path, method: :delete %></li>
+  </ul>
+</nav>
+<%= yield %>
 
   <% else %>
   <title>＜新・鉄道乗りつぶし記録＞ | ログイン</title>
 </head>
 <body>
-<h1>ログイン</h1>
-
+<header>
+  <h1 id="show">ログイン</h1>
+</header>
 <%= form_for(:session, url: sessions_path) do |f| %>
 
   <table border="1">

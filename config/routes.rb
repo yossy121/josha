@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   get 'static_pages/home'
   get 'static_pages/help'
 
+  resources :states, only: [:index]
   resources :users, only: [:index, :show, :new, :edit, :create, :update]
 #  resources :users, only: [:new, :edit, :create, :update]
   resources :sessions, only: [:new, :create, :destroy]

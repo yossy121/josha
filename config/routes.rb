@@ -16,8 +16,11 @@ Rails.application.routes.draw do
   match '/signin', to: 'sessions#new', via: 'get'
   match '/signout', to: 'sessions#destroy', via: 'delete'
 
-  get '/companies/:company_id/stations' => 'stations#index', as: 'station_index'
-  get '/companies/:company_id/rosens' => 'rosens#index', as: 'rosen_index'
+  get '/states/:state_id/stations' => 'stations#stateindex', as: 'station_index_state'
+  get '/states/:state_id/rosens' => 'rosens#stateindex', as: 'rosen_index_state'
+
+  get '/companies/:company_id/stations' => 'stations#companyindex', as: 'station_index_company'
+  get '/companies/:company_id/rosens' => 'rosens#companyindex', as: 'rosen_index_company'
 
   get '/stations/:station_id' => 'stations#show', as: 'station_detail'
   get '/rosens/:rosen_id' => 'rosens#show', as: 'rosen_detail'

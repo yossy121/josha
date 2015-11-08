@@ -1,9 +1,16 @@
 class StationsController < ApplicationController
-  def index
+  def companyindex
     @Company = Company.find(params[:company_id])
-    @Stations = Station.eager_load(:state, :user_station_statuses).where(["stations.company_id = ? and stations.delete_flag = ? and user_station_statuses.user_id = ?", params[:company_id], 0, current_user.id]).order(:name_ruby)
+    @Stations = Station.eager_load(:state, :user_station_statuses).company_is(params[:company_id]).station_user_is(current_user).order(:name_ruby)
     @StationCount = Station.company_is(params[:company_id]).not_abolish.count
     @VisitedCount = Station.eager_load(:state, :user_station_statuses).company_is(params[:company_id]).visit_true.station_user_is(current_user).count
+  end
+
+  def stateindex
+    @State = State.find(params[:state_id])
+    @Stations = Station.eager_load(:company, :state, :user_station_statuses).state_is(params[:state_id]).station_user_is(current_user).order('companies.category_id asc, companies.company_sub_id asc, name_ruby asc')
+    @StationCount = Station.state_is(params[:state_id]).not_abolish.count
+    @VisitedCount = Station.eager_load(:state, :user_station_statuses).state_is(params[:state_id]).visit_true.station_user_is(current_user).count
   end
 
   def show

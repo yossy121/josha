@@ -1,0 +1,49 @@
+<% provide(:title, @State.name + ' 駅一覧') %>
+<header>
+  <h1 id="show"><%= @State.name %> 駅一覧</h1>
+</header>
+<article>
+  <section class="summary">
+    <table border="1">
+      <col span="3" width="80" />
+      <tbody>
+        <tr>
+          <th>総営業駅数</th>
+          <th>訪問駅数</th>
+          <th>訪問率</th>
+        </tr>
+        <tr>
+          <td class="kilo"><%= @StationCount %></td>
+          <td class="kilo"><%= @VisitedCount %></td>
+          <td class="kilo"><%= number_with_precision((@VisitedCount.to_f / @StationCount.to_f) * 100, :precision => 3) %>%</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+  <table border="1">
+    <col span="1" width="150" />
+    <col span="1" width="200" />
+    <col span="1" width="250" />
+    <col span="2" width="75" />
+    <tbody>
+      <tr>
+        <th>会社名</th>
+        <th>駅名</th>
+        <th>ふりがな</th>
+        <th>訪問日</th>
+        <th>訪問チェック</th>
+      </tr>
+    <% @Stations.each do |s| %>
+      <tr>
+        <td><%= s.company.name %></td>
+        <td><%= link_to s.name, station_detail_path(s) %></td>
+        <td><%= s.name_ruby %></td>
+        <% s.user_station_statuses.each do |u| %>
+        <td class="date"><%= u.visit_day %></td>
+        <td class="chk"><% if u.visit_chk? %>●<% end %></td>
+        <% end %>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+</article>

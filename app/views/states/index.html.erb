@@ -14,8 +14,8 @@
     <% @States.each do |s| %>
       <tr>
         <td><%= s.name %></td>
-        <td><%= s.name %> 駅間詳細<%# link_to "#{c.name} 路線一覧", rosen_index_path(c) %></td>
-        <td><%= s.name %> 駅一覧<%# link_to "#{c.name} 駅一覧", station_index_path(c) %></td>
+        <td><%= link_to "#{s.name} 路線一覧", rosen_index_state_path(s) %></td>
+        <td><%= link_to "#{s.name} 駅一覧", station_index_state_path(s) %></td>
       </tr>
     <% end %>
     </tbody>

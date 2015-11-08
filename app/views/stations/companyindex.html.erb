@@ -15,7 +15,7 @@
         <tr>
           <td class="kilo"><%= @StationCount %></td>
           <td class="kilo"><%= @VisitedCount %></td>
-          <td class="kilo"><%= number_with_precision((@VisitedCount / @StationCount) * 100, :precision => 3) %>%</td>
+          <td class="kilo"><%= number_with_precision((@VisitedCount.to_f / @StationCount.to_f) * 100, :precision => 3) %>%</td>
         </tr>
       </tbody>
     </table>

@@ -1,6 +1,7 @@
 class Company < ActiveRecord::Base
   # 従属関係
   has_many :rosens
+  has_many :sections, through: :rosens
   has_many :stations
   belongs_to :category
 

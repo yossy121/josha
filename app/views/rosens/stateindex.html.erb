@@ -1,0 +1,41 @@
+<% provide(:title, @State.name + ' ' + ' 駅間詳細') %>
+<header>
+  <h1 id="show"><%= @State.name %> 駅間詳細</h1>
+</header>
+<article>
+  <div id="announce">
+    <p>※この画面では編集が出来ません。編集を行う場合は、該当の路線名を選択してください。</p>
+  </div>
+  <table border="1">
+    <col span="1" width="35" />
+    <col span="2" width="150" />
+    <col span="2" width="200" />
+    <col span="3" width="75" />
+    <tbody>
+      <tr>
+        <th>ID</th>
+        <th>会社名</th>
+        <th>路線名</th>
+        <th>開始駅</th>
+        <th>終了駅</th>
+        <th>営業キロ</th>
+        <th>乗車日</th>
+        <th>乗車チェック</th>
+      </tr>
+    <% @Sections.each do |s| %>
+      <tr>
+        <td><%= s.id %></td>
+        <td><%= s.company.name %></td>
+        <td><%= link_to s.rosen.name, rosen_detail_path(s.rosen_id) %></td>
+        <td><%= link_to s.start_station.name, station_detail_path(s.start_station.id) %></td>
+        <td><%= link_to s.end_station.name, station_detail_path(s.end_station.id) %></td>
+        <td class="kilo"><%= s.kilo %></td>
+        <% s.user_section_statuses.each do |u| %>
+        <td class="date"><%= u.ride_day %></td>
+        <td class="chk"><% if u.ride_chk? %>●<%  end %></td>
+        <% end %>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+</article>

@@ -3,6 +3,9 @@
   <h1 id="show"><%= @Station.company.name %> <%= @Station.name %>駅 詳細</h1>
 </header>
 <article>
+<% if flash[:notice] %>
+  <p id="sub"><%= flash[:notice] %>
+<% end %>
   <dl>
     <dt>駅名 （ふりがな）<dt>
     <dd><%= @Station.name %> （<%= @Station.name_ruby %>）</dd>

@@ -11,21 +11,20 @@
     <dt>会社名<dt>
     <dd><%= @Station.company.name %></dd>
     <p class="s_title">訪問記録</p>
+    <%= form_for(@Status, :url => {:controller => 'user_station_statuses', :action => 'update'}) do |f| %>
     <table border="1">
       <tbody>
         <tr>
           <th>訪問日</th>
           <th>訪問チェック</th>
-          <th>編集ボタン</th>
         </tr>
-    <%= form_for(@Status, :url => {:controller => 'user_station_statuses', :action => 'update'}) do |f| %>
         <tr>
-          <td><%= f.date_select :visit_day, use_month_numbers: true, start_year: 1872, end_year: (Time.now.year), default: (@Status.visit_day), date_separator: '/' %></td>
-          <td><%= f.check_box :visit_chk %></td>
-          <td><%= f.submit '更新する'%></td>
+          <td><%= f.date_select :visit_day, include_blank: true, ignore_date: true, use_month_numbers: true, start_year: 1872, end_year: (Time.now.year), default: (@Status.visit_day), date_separator: '/' %></td>
+          <td class="chk"><%= f.check_box :visit_chk %></td>
         </tr>
-    <% end %>
       </tbody>
     </table>
+    <p><%= f.submit '更新する', data: {disable_with: "送信中..."} %></p>
+    <% end %>
   </dl>
 </article>

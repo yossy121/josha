@@ -6,6 +6,9 @@ class UserStationStatusesController < ApplicationController
       $id = s.id
     end
     @Status = UserStationStatus.find($id)
+    if @Status.visit_day?
+      @Status.visit_chk = 1
+    end 
   end
 
   def update
@@ -14,6 +17,11 @@ class UserStationStatusesController < ApplicationController
       $id = s.id
     end
     @Status = UserStationStatus.find($id)
+
+    if @Status.visit_day?
+      @Status.visit_chk = 1
+    end
+
     if @Status.update(visit_param)
       redirect_to @Status, :notice => '更新しました。'
     else

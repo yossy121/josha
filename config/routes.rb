@@ -8,7 +8,6 @@ Rails.application.routes.draw do
 
   resources :states, only: [:index]
   resources :users, only: [:index, :show, :new, :edit, :create, :update]
-#  resources :users, only: [:new, :edit, :create, :update]
   resources :sessions, only: [:new, :create, :destroy]
   resources :companies, only: [:index]
 
@@ -23,6 +22,11 @@ Rails.application.routes.draw do
   get '/companies/:company_id/rosens' => 'rosens#companyindex', as: 'rosen_index_company'
 
   get '/stations/:station_id' => 'stations#show', as: 'station_detail'
+
+  get '/stations/:station_id/edit' => 'user_station_statuses#edit', as: 'station_edit'
+  patch '/stations/:station_id' => 'user_station_statuses#update', as: 'user_station_status'
+  put '/stations/:station_id' => 'user_station_statuses#update'
+
   get '/rosens/:rosen_id' => 'rosens#show', as: 'rosen_detail'
 
   root 'dashboards#show'

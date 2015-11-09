@@ -1,6 +1,6 @@
-<% provide(:title, @Station.company.name + ' ' + @Station.name + '駅 詳細') %>
+<% provide(:title, @Station.company.name + ' ' + @Station.name + '駅 訪問記録 編集画面') %>
 <header>
-  <h1 id="show"><%= @Station.company.name %> <%= @Station.name %>駅 詳細</h1>
+  <h1 id="edit"><%= @Station.company.name %> <%= @Station.name %>駅 訪問記録 編集画面</h1>
 </header>
 <article>
   <dl>
@@ -19,11 +19,13 @@
           <th>訪問チェック</th>
           <th>編集ボタン</th>
         </tr>
+    <% form_for(@Status) do |f| %>
         <tr>
-          <td class="date"><%= @Status.visit_day %></td>
-          <td class="chk"><% if @Status.visit_chk? %>●<%  end %></td>
-          <td><%= link_to "編集画面へ", station_edit_path(@Status) %></td>
+          <td><%= f.number_field :visit_day %>年</td>
+          <td></td>
+          <td><%= f.submit '更新する'%></td>
         </tr>
+    <% end %>
       </tbody>
     </table>
   </dl>

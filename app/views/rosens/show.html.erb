@@ -17,7 +17,11 @@
         <th>乗車チェック</th>
       </tr>
     <% @Sections.each do |s| %>
+        <% if s.abolished_flag? %>
+      <tr class="abo">
+        <% else %>
       <tr>
+        <% end %>
         <td><%= s.id %></td>
         <td><%= link_to s.start_station.name, station_detail_path(s.start_station.id) %></td>
         <td><%= link_to s.end_station.name, station_detail_path(s.end_station.id) %></td>
@@ -36,4 +40,4 @@
       </tr>
     </tbody>
   </table>
-</article>
+  <p><%= link_to '編集画面へ', section_edit_path(@Rosen) %></p></article>

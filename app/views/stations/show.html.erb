@@ -13,21 +13,20 @@
     <dd><%= @Station.state.name %></dd>
     <dt>会社名<dt>
     <dd><%= @Station.company.name %></dd>
-    <p class="s_title">訪問記録</p>
-    <table border="1">
-      <col span="2" width="75" />
-      <tbody>
-        <tr>
-          <th>訪問日</th>
-          <th>訪問チェック</th>
-          <th>編集ボタン</th>
-        </tr>
-        <tr>
-          <td class="date"><%= @Status.visit_day %></td>
-          <td class="chk"><% if @Status.visit_chk? %>●<%  end %></td>
-          <td><%= link_to "編集画面へ", station_edit_path(@Status) %></td>
-        </tr>
-      </tbody>
-    </table>
   </dl>
+  <p class="s_title">訪問記録</p>
+  <table border="1">
+    <col span="2" width="75" />
+    <tbody>
+      <tr>
+        <th>訪問日</th>
+        <th>訪問チェック</th>
+      </tr>
+      <tr>
+        <td class="date"><%= @Status.visit_day %></td>
+        <td class="chk"><% if @Status.visit_chk? %>訪問済み<% else %>未訪問<% end %></td>
+      </tr>
+    </tbody>
+  </table>
+  <p><%= link_to "編集画面へ", station_edit_path(@Station) %></p>
 </article>

@@ -1,0 +1,43 @@
+<% provide(:title, @Rosen.name + ' ' + @Rosen.start_station.name + '～' + @Rosen.end_station.name + ' 駅間乗車記録 編集画面') %>
+<header>
+  <h1 id="edit"><%= @Rosen.name %> （<%= @Rosen.start_station.name %>～<%= @Rosen.end_station.name %>） 駅間乗車記録 編集画面</h1>
+</header>
+<article>
+<%= form_for(@Rosen, :url => {:controller => 'user_section_statuses', :action => 'update'}) do |f| %>
+  <table border="1">
+    <col span="2" width="50" />
+    <col span="2" width="200" />
+    <col span="3" width="75" />
+    <tbody>
+      <tr>
+        <th>始区間</th>
+        <th>終区間</th>
+        <th>開始駅</th>
+        <th>終了駅</th>
+        <th>営業キロ</th>
+        <th>乗車日</th>
+        <th>乗車チェック</th>
+      </tr>
+    <% @Sections.each do |s| %>
+        <% if s.abolished_flag? %>
+      <tr class="abo">
+        <% else %>
+      <tr>
+        <% end %>
+        <td class="chk"><%= radio_button "page", "startcheck", s.section_sub_id %></td>
+        <td class="chk"><%= radio_button "page", "endcheck", s.section_sub_id %></td>
+        <td><%= s.start_station.name %></td>
+        <td><%= s.end_station.name %></td>
+        <td class="kilo"><%= s.kilo %></td>
+        <% s.user_section_statuses.each do |u| %>
+        <td class="date"><%= u.ride_day %></td>
+        <td class="chk"><% if u.ride_chk? %>●<%  end %></td>
+        <% end %>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+  <p>乗車日：<%= date_select "page", "ride_day", include_blank: true, ignore_date: true, use_month_numbers: true, start_year: 1872, end_year: (Time.now.year), date_separator: '/' %>　（乗車日を入力しない場合は空欄にしてください。）　<%= f.submit '更新する', data: {disable_with: "送信中..."} %>
+<% end %>
+  <p><%= link_to @Rosen.name + 'へ戻る', rosen_detail_path(@Rosen) %></p>
+</article>

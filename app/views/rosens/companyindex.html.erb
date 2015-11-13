@@ -23,7 +23,11 @@
         <th>乗車キロ</th>
       </tr>
     <% @Rosens.each do |r| %>
+        <% if r.abolished_flag? %>
+      <tr class="abo">
+        <% else %>
       <tr>
+        <% end %>
         <td><%= r.id %></td>
         <td><%= link_to r.name, rosen_detail_path(r) %></td>
         <td><%= r.start_station.name %></td>

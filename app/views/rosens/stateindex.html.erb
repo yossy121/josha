@@ -23,7 +23,11 @@
         <th>乗車チェック</th>
       </tr>
     <% @Sections.each do |s| %>
+        <% if s.abolished_flag? %>
+      <tr class="abo">
+        <% else %>
       <tr>
+        <% end %>
         <td><%= s.id %></td>
         <td><%= s.company.name %></td>
         <td><%= link_to s.rosen.name, rosen_detail_path(s.rosen_id) %></td>

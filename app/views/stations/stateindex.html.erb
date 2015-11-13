@@ -34,7 +34,11 @@
         <th>訪問チェック</th>
       </tr>
     <% @Stations.each do |s| %>
+        <% if s.abolished_flag? %>
+      <tr class="abo">
+        <% else %>
       <tr>
+        <% end %>
         <td><%= s.company.name %></td>
         <td><%= link_to s.name, station_detail_path(s) %></td>
         <td><%= s.name_ruby %></td>

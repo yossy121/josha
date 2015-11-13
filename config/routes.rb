@@ -22,12 +22,15 @@ Rails.application.routes.draw do
   get '/companies/:company_id/rosens' => 'rosens#companyindex', as: 'rosen_index_company'
 
   get '/stations/:station_id' => 'stations#show', as: 'station_detail'
-
   get '/stations/:station_id/edit' => 'user_station_statuses#edit', as: 'station_edit'
   patch '/stations/:station_id' => 'user_station_statuses#update', as: 'user_station_status'
   put '/stations/:station_id' => 'user_station_statuses#update'
 
   get '/rosens/:rosen_id' => 'rosens#show', as: 'rosen_detail'
+  get '/rosens/:rosen_id/edit' => 'user_section_statuses#edit', as: 'section_edit'
+  patch '/rosens/:rosen_id' => 'user_section_statuses#update', as: 'user_section_status'
+  put '/rosens/:rosen_id' => 'user_section_statuses#update'
+
 
   root 'dashboards#show'
 end

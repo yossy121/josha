@@ -6,9 +6,6 @@ class UserStationStatusesController < ApplicationController
       $id = s.id
     end
     @Status = UserStationStatus.find($id)
-    if @Status.visit_day?
-      @Status.visit_chk = 1
-    end 
   end
 
   def update
@@ -18,8 +15,9 @@ class UserStationStatusesController < ApplicationController
     end
     @Status = UserStationStatus.find($id)
 
-    if @Status.visit_day?
-      @Status.visit_chk = 1
+# 日付が入力されていた場合はチェックフラグを入れる処理
+    if params[:user_station_status]["visit_day(1i)"].present? and params[:user_station_status]["visit_day(2i)"].present? and params[:user_station_status]["visit_day(3i)"].present?
+      params[:user_station_status][:visit_chk] = '1'
     end
 
     if @Status.update(visit_param)

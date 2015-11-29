@@ -1,4 +1,11 @@
 <% provide(:title, @Station.company.name + ' ' + @Station.name + '駅 詳細') %>
+<nav>
+  <ul>
+<%= render partial: 'nav' %>
+    <li><%= link_to @Station.company.name + ' 路線一覧', rosen_index_company_path(@Station.company_id) %></li>
+    <li><%= link_to @Station.company.name + ' 駅一覧', station_index_company_path(@Station.company_id) %></li>
+  </ul>
+</nav>
 <header>
   <h1 id="show"><%= @Station.company.name %> <%= @Station.name %>駅 詳細</h1>
 </header>

@@ -1,8 +1,18 @@
 <% provide(:title, @Rosen.name + ' ' + @Rosen.start_station.name + '～' + @Rosen.end_station.name + ' 駅間詳細') %>
+<nav>
+  <ul>
+<%= render partial: 'nav' %>
+    <li><%= link_to @Rosen.company.name + ' 路線一覧', rosen_index_company_path(@Rosen.company_id) %></li>
+    <li><%= link_to @Rosen.company.name + ' 駅一覧', station_index_company_path(@Rosen.company_id) %></li>
+  </ul>
+</nav>
 <header>
   <h1 id="show"><%= @Rosen.name %> （<%= @Rosen.start_station.name %>～<%= @Rosen.end_station.name %>） 駅間詳細</h1>
 </header>
 <article>
+<% if flash[:notice] %>
+  <p id="sub"><%= flash[:notice] %>
+<% end %>
   <table border="1">
     <col span="1" width="35" />
     <col span="2" width="200" />

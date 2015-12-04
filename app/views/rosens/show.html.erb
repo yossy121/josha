@@ -14,12 +14,10 @@
   <p id="sub"><%= flash[:notice] %>
 <% end %>
   <table border="1">
-    <col span="1" width="35" />
     <col span="2" width="200" />
-    <col span="3" width="75" />
+    <col span="3" width="80" />
     <tbody>
       <tr>
-        <th>ID</th>
         <th>開始駅</th>
         <th>終了駅</th>
         <th>営業キロ</th>
@@ -32,7 +30,6 @@
         <% else %>
       <tr>
         <% end %>
-        <td><%= s.id %></td>
         <td><%= link_to s.start_station.name, station_detail_path(s.start_station.id) %></td>
         <td><%= link_to s.end_station.name, station_detail_path(s.end_station.id) %></td>
         <td class="kilo"><%= s.kilo %></td>
@@ -43,7 +40,7 @@
       </tr>
     <% end %>
       <tr>
-        <td colspan="3" class="foot">合計</td>
+        <td colspan="2" class="foot">合計</td>
         <td class="kilo"><%= @Rosen.kilo %></td>
         <td class="foot">乗車キロ</td>
         <td class="kilo"><%= @Section_sum %></td>

@@ -22,7 +22,11 @@
         <tr>
           <td class="kilo"><%= @StationCount %></td>
           <td class="kilo"><%= @VisitedCount %></td>
+    <% if @StationCount == 0 %>
+          <td class="kilo">-.-%</td>
+    <% else %>
           <td class="kilo"><%= number_with_precision((@VisitedCount.to_f / @StationCount.to_f) * 100, :precision => 3) %>%</td>
+    <% end %>
         </tr>
       </tbody>
     </table>
@@ -30,7 +34,7 @@
   <table border="1">
     <col span="1" width="200" />
     <col span="1" width="250" />
-    <col span="3" width="75" />
+    <col span="3" width="80" />
     <tbody>
       <tr>
         <th>駅名</th>

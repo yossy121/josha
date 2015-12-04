@@ -8,7 +8,6 @@ class UsersController < ApplicationController
   end
 
   def show
-#    @user = User.find_by(:name => params[:id])
     @user = User.find(params[:id])
   end
 
@@ -24,7 +23,6 @@ class UsersController < ApplicationController
     if @user.save
       sign_in @user
       redirect_to controller: 'dashboards', action: 'index'
-#      redirect_to @user
     else
       render 'new'
     end

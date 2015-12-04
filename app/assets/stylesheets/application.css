@@ -110,23 +110,30 @@ dt, #maps p, .s_title{
 	text-align:right;
 }
 
-nav, #header{
+nav{
 	background-color:#999999;
-	padding:10px 5px 0px 5px ;
+	padding:10px 5px 5px 5px ;
 	margin:0px;
 }
 
-#header table{
-	border-collapse:collapse;
-	border:0px;
+nav a{
+	font-weight:bold;
+	color:#ffffff;
 }
 
-#header td{
-	padding:5px 10px;
+nav ul{
+	display:inline;
+	margin:0px;
+	padding:0px;
+}
+
+nav li{
+	display:inline;
+	padding:10px;
 }
 
 /**/
-#header a, #header a:visited{
+nav a, nav a:visited{
 	font-weight:bold;
 	color:#ffffff;
 }

@@ -9,14 +9,14 @@
 </header>
 <article>
   <table border="1">
-    <tr>
-      <th>名前</th>
-      <td><%= current_user.name %></td>
-    </tr>
-    <tr>
-      <th>メールアドレス</th>
-      <td><%= current_user.email %></td>
-    </tr>
+    <col span="1" width="100" />
+    <col span="1" width="200" />
+    <tbody>
+      <tr>
+        <th>名前</th>
+        <td><%= current_user.name %></td>
+      </tr>
+    </tbody>
   </table>
 
     <% if current_user?(current_user) %>

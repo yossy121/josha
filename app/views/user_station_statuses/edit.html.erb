@@ -2,12 +2,17 @@
 <nav>
   <ul>
 <%= render partial: 'nav' %>
+    <li><%= link_to @Station.company.name + ' 路線一覧', rosen_index_company_path(@Station.company_id) %></li>
+    <li><%= link_to @Station.company.name + ' 駅一覧', station_index_company_path(@Station.company_id) %></li>
   </ul>
 </nav>
 <header>
   <h1 id="edit"><%= @Station.company.name %> <%= @Station.name %>駅 訪問記録 編集画面</h1>
 </header>
 <article>
+<% if flash[:alert] %>
+  <p id="caution"><%= flash[:alert] %></p>
+<% end %>
   <div id="announce">
     <p>※日付を入力した場合、訪問チェックは自動で反映されます。</p>
   </div>
@@ -28,7 +33,7 @@
         <th>訪問チェック</th>
       </tr>
       <tr>
-        <td><%= f.date_select :visit_day, include_blank: true, ignore_date: false, use_month_numbers: true, start_year: 1872, end_year: (Time.now.year), default: (@Status.visit_day), date_separator: '/' %></td>
+        <td><%= f.date_select :visit_day, include_blank: true, ignore_date: false, use_month_numbers: true, start_year: (Time.now.year), end_year: 1872, default: (@Status.visit_day), date_separator: '/' %></td>
         <td class="chk"><%= f.check_box :visit_chk %></td>
       </tr>
     </tbody>

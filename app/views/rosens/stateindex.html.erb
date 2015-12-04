@@ -2,6 +2,8 @@
 <nav>
   <ul>
 <%= render partial: 'nav' %>
+    <li><%= link_to @State.name + ' 駅間詳細', rosen_index_state_path(@State) %></li>
+    <li><%= link_to @State.name + ' 駅一覧', station_index_state_path(@State) %></li>
   </ul>
 </nav>
 <header>
@@ -12,13 +14,11 @@
     <p>※この画面では編集が出来ません。編集を行う場合は、該当の路線名を選択してください。</p>
   </div>
   <table border="1">
-    <col span="1" width="35" />
     <col span="2" width="150" />
     <col span="2" width="200" />
-    <col span="3" width="75" />
+    <col span="3" width="80" />
     <tbody>
       <tr>
-        <th>ID</th>
         <th>会社名</th>
         <th>路線名</th>
         <th>開始駅</th>
@@ -33,7 +33,6 @@
         <% else %>
       <tr>
         <% end %>
-        <td><%= s.id %></td>
         <td><%= s.company.name %></td>
         <td><%= link_to s.rosen.name, rosen_detail_path(s.rosen_id) %></td>
         <td><%= link_to s.start_station.name, station_detail_path(s.start_station.id) %></td>

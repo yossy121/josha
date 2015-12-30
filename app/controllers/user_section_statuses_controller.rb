@@ -36,7 +36,7 @@ class UserSectionStatusesController < ApplicationController
       redirect_to ({:controller => 'user_section_statuses', :action => 'edit'}), :alert => '日付に誤りがあります。' and return
     end
 
-    if params[:user_section_status][:startcheck] > params[:user_section_status][:endcheck]
+    if params[:user_section_status][:startcheck].to_i > params[:user_section_status][:endcheck].to_i
       tmp = params[:user_section_status][:endcheck]
       params[:user_section_status][:endcheck] = params[:user_section_status][:startcheck]
       params[:user_section_status][:startcheck] = tmp
@@ -71,7 +71,11 @@ class UserSectionStatusesController < ApplicationController
     @SumUpdate = UserRosenStatus.find($id)
 
     if @SumUpdate.update(rosen_param)
-      redirect_to ({:controller => 'rosens', :action => 'show'}), :notice => '更新しました。'
+      if params[:continue_edit]
+        redirect_to ({:controller => 'user_section_statuses', :action => 'edit'}), :notice => '更新しました。'
+      else
+        redirect_to ({:controller => 'rosens', :action => 'show'}), :notice => '更新しました。'
+      end
     else
       render :template => 'user_section_status/edit'
     end

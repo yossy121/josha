@@ -20,5 +20,7 @@ class StationsController < ApplicationController
       $id = s.id
     end
     @Status = UserStationStatus.find($id)
+    @PrevStation = Section.eager_load(:rosen, :start_station, :end_station).where("sections.end_id = ?", params[:station_id])
+    @NextStation = Section.eager_load(:rosen, :start_station, :end_station).where("sections.start_id = ?", params[:station_id])
   end
 end

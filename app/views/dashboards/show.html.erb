@@ -8,18 +8,15 @@
 
 </header>
 <article>
-  <table border="1">
-    <col span="1" width="100" />
-    <col span="1" width="200" />
-    <tbody>
-      <tr>
-        <th>名前</th>
-        <td><%= current_user.name %></td>
-      </tr>
-    </tbody>
-  </table>
-
+  <p>ようこそ <%= current_user.name %> さん。</p>
     <% if current_user?(current_user) %>
   <p><%# link_to '編集', edit_user_path, :id => current_user.id %></p>
     <% end %>
+  <h2>更新履歴</h2>
+  <dl>
+    <% @Infos.each do |s| %>
+    <dt><%= s.publishing_date %></dt>
+    <dd><%= s.title %></dd>
+    <% end %>
+  </dl>
 </article>

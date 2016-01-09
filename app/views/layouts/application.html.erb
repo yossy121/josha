@@ -4,7 +4,7 @@
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
-
+  <meta name="robots" content="noindex,nofollow">
   <% if signed_in? %>
   <title>＜新・鉄道乗りつぶし記録＞ | <%= yield(:title) %></title>
 </head>
@@ -20,6 +20,7 @@
 <header>
   <h1 id="show">ログイン</h1>
 </header>
+<article>
 <%= form_for(:session, url: sessions_path) do |f| %>
 
   <table border="1">
@@ -36,6 +37,7 @@
   <%= f.submit 'ログインする' %>
 
 <% end %>
+</article>
   <% end %>
 </body>
 </html>

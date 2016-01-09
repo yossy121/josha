@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151026010242) do
+ActiveRecord::Schema.define(version: 20160107140728) do
 
   create_table "categories", force: :cascade do |t|
     t.string   "name",        limit: 255,             null: false
@@ -28,6 +28,14 @@ ActiveRecord::Schema.define(version: 20151026010242) do
     t.integer  "company_sub_id", limit: 4,               null: false
     t.datetime "created_at",                             null: false
     t.datetime "updated_at",                             null: false
+  end
+
+  create_table "infos", force: :cascade do |t|
+    t.date     "publishing_date"
+    t.string   "title",           limit: 255
+    t.string   "detail",          limit: 255
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
   end
 
   create_table "rosens", force: :cascade do |t|
@@ -75,13 +83,13 @@ ActiveRecord::Schema.define(version: 20151026010242) do
   end
 
   create_table "user_rosen_statuses", force: :cascade do |t|
-    t.integer  "user_id",           limit: 4
-    t.integer  "rosen_id",          limit: 4
-    t.decimal  "ride_kilo_sum",               precision: 10
-    t.decimal  "ride_abo_kilo_sum",           precision: 10
-    t.integer  "delete_flag",       limit: 4
-    t.datetime "created_at",                                 null: false
-    t.datetime "updated_at",                                 null: false
+    t.integer  "user_id",           limit: 4,                                       null: false
+    t.integer  "rosen_id",          limit: 4,                                       null: false
+    t.decimal  "ride_kilo_sum",               precision: 9, scale: 1, default: 0.0
+    t.decimal  "ride_abo_kilo_sum",           precision: 9, scale: 1, default: 0.0
+    t.integer  "delete_flag",       limit: 4,                                       null: false
+    t.datetime "created_at",                                                        null: false
+    t.datetime "updated_at",                                                        null: false
   end
 
   create_table "user_section_statuses", force: :cascade do |t|

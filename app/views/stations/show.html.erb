@@ -11,18 +11,35 @@
 </header>
 <article>
 <% if flash[:notice] %>
-  <p id="sub"><%= flash[:notice] %>
+  <div id="sub">
+    <p><%= flash[:notice] %></p>
+  </div>
 <% end %>
+  <div class="links">
+    <ul>
+      <li><%= link_to "訪問記録の編集", station_edit_path(@Station) %></li>
+    </ul>
+  </div>
 <% if @Station.abolished_flag? %>
   <p id="abo_warn">この駅は廃止されています。</p>
 <% end %>
-  <dl>
+  <dl id="station_summary">
     <dt>駅名 （ふりがな）<dt>
     <dd><%= @Station.name %> （<%= @Station.name_ruby %>）</dd>
     <dt>都道府県<dt>
     <dd><%= @Station.state.name %></dd>
     <dt>会社名<dt>
     <dd><%= @Station.company.name %></dd>
+<% if !@Station.abolished_flag? %>
+    <dt>接続路線</dt>
+    <dd>
+      <ul>
+    <% @Rosens.each do |r| %>
+        <li><%= r.rosen.name %> （<%= r.rosen.start_station.name %>～<%= r.rosen.end_station.name %>）</li>
+    <% end %>
+      </ul>
+  </dd>
+<% end %>
   </dl>
   <p class="s_title">訪問記録</p>
   <table border="1">
@@ -38,5 +55,9 @@
       </tr>
     </tbody>
   </table>
-  <p><%= link_to "編集画面へ", station_edit_path(@Station) %></p>
+  <div class="links">
+    <ul>
+      <li><%= link_to "訪問記録の編集", station_edit_path(@Station) %></li>
+    </ul>
+  </div>
 </article>

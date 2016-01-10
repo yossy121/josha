@@ -9,6 +9,7 @@ class Station < ActiveRecord::Base
   scope :not_abolish, -> { where("stations.abolished_flag = ?", 0) }
   scope :station_user_is, -> (user_id) { where("user_station_statuses.user_id = ?", user_id) }
   scope :visit_true, -> { where("user_station_statuses.visit_chk = ? and user_station_statuses.delete_flag = ?", 1, 0) }
+  scope :not_delete, -> { where("stations.delete_flag = ?", 0) }
 
   enum abolished_flag: {not_abolished: 0, abolished: 1}
   enum delete_flag: {not_delete: 0, deleted: 1}

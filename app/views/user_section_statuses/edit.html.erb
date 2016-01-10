@@ -11,11 +11,20 @@
 </header>
 <article>
 <% if flash[:alert] %>
-  <p id="caution"><%= flash[:alert] %></p>
+  <div id="caution">
+    <p><%= flash[:alert] %></p>
+  </div>
 <% end %>
 <% if flash[:notice] %>
-  <p id="sub"><%= flash[:notice] %>
+  <div id="sub">
+    <p><%= flash[:notice] %>
+  </div>
 <% end %>
+  <div class="links">
+    <ul>
+      <li><%= link_to @Rosen.name + 'へ戻る', rosen_detail_path(@Rosen) %></li>
+    </ul>
+  </div>
   <div id="announce">
     <p>※「始区間」と「終区間」に挟まれた区間のデータを更新します。</p>
   </div>
@@ -56,5 +65,9 @@
   <p>乗車日：<%= date_select "user_section_status", "ride_day", include_blank: true, ignore_date: true, use_month_numbers: true, start_year: (Time.now.year), end_year: 1872, date_separator: '/' %>　（乗車日を入力しない場合は空欄にしてください。）　<%= hidden_field "user_rosen_status", "ride_kilo_sum" %><%= f.submit '更新する', data: {disable_with: "送信中..."} %>　<%= f.submit '続けて更新する', name: "continue_edit", data: {disable_with: "送信中..."} %></p>
   <p>乗車記録の削除　<%= f.submit '削除する', name: "erase_button", data: {disable_with: "送信中..."} %></p>
 <% end %>
-  <p><%= link_to @Rosen.name + 'へ戻る', rosen_detail_path(@Rosen) %></p>
+  <div class="links">
+    <ul>
+      <li><%= link_to @Rosen.name + 'へ戻る', rosen_detail_path(@Rosen) %></li>
+    </ul>
+  </div>
 </article>

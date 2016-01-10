@@ -1,0 +1,69 @@
+<% provide(:title, @Rosen.name + ' ' + @Rosen.start_station.name + '～' + @Rosen.end_station.name + ' 駅一覧') %>
+<nav>
+  <ul>
+<%= render partial: 'nav' %>
+    <li><%= link_to @Rosen.company.name + ' 路線一覧', rosen_index_company_path(@Rosen.company_id) %></li>
+    <li><%= link_to @Rosen.company.name + ' 駅一覧', station_index_company_path(@Rosen.company_id) %></li>
+  </ul>
+</nav>
+<header>
+  <h1 id="show"><%= @Rosen.name %> （<%= @Rosen.start_station.name %>～<%= @Rosen.end_station.name %>） 駅一覧</h1>
+</header>
+<article>
+<% if @Rosen.abolished_flag? %>
+  <div id="announce">
+    <p id="caution">路線廃止されているため、現存する駅はありません。</p>
+  </div>
+<% else %>
+  <div id="announce">
+    <p>※廃止された駅は表示されません。</p>
+  </div>
+  <section class="summary">
+    <table border="1">
+      <col span="3" width="80" />
+      <tbody>
+        <tr>
+          <th>総営業駅数</th>
+          <th>訪問駅数</th>
+          <th>訪問率</th>
+        </tr>
+        <tr>
+          <td class="kilo"><%# @StationCount %></td>
+          <td class="kilo"><%# @VisitedCount %></td>
+    <%# if @StationCount == 0 %>
+          <td class="kilo">-.-%</td>
+    <%# else %>
+          <!--<td class="kilo"><%# number_with_precision((@VisitedCount.to_f / @StationCount.to_f) * 100, :precision => 3) %>%</td>-->
+    <%# end %>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+  <table border="1">
+    <col span="1" width="200" />
+    <col span="1" width="250" />
+    <col span="1" width="80" />
+    <tbody>
+      <tr>
+        <th>駅名</th>
+        <th>ふりがな</th>
+        <th>都道府県</th>
+      </tr>
+    <% @Sections.each do |s| %>
+      <tr>
+        <td><%= link_to s.start_station.name, station_detail_path(s) %></td>
+        <td><%= s.start_station.name_ruby %></td>
+        <td><%= s.start_station.state.name %></td>
+      </tr>
+    <% end %>
+    <% @SectionsLast.each do |l| %>
+      <tr>
+        <td><%= link_to l.end_station.name, station_detail_path(l) %></td>
+        <td><%= l.end_station.name_ruby %></td>
+        <td><%= l.end_station.state.name %></td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+<% end %>
+</article>

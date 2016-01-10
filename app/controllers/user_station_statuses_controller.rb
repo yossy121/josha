@@ -1,6 +1,7 @@
 class UserStationStatusesController < ApplicationController
   def edit
     @Station = Station.eager_load(:state, :company).find(params[:station_id])
+    @Rosens = Section.eager_load(:rosen, :start_station, :end_station).where("sections.start_id = ? or sections.end_id = ?", params[:station_id], params[:station_id]).not_abolish.not_delete.group(:rosen_id)
     @StatusSearch = UserStationStatus.user_is(current_user).station_is(params[:station_id]).not_delete
     @StatusSearch.each do |s|
       $id = s.id
@@ -10,6 +11,7 @@ class UserStationStatusesController < ApplicationController
 
   def update
     @Station = Station.eager_load(:state, :company).find(params[:station_id])
+    @Rosens = Section.eager_load(:rosen, :start_station, :end_station).where("sections.start_id = ? or sections.end_id = ?", params[:station_id], params[:station_id]).not_abolish.not_delete.group(:rosen_id)
     @StatusSearch = UserStationStatus.user_is(current_user).station_is(params[:station_id]).not_delete
     @StatusSearch.each do |s|
       $id = s.id

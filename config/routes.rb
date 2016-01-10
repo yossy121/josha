@@ -22,6 +22,7 @@ Rails.application.routes.draw do
   get '/states/:state_id/stations' => 'stations#stateindex', as: 'station_index_state'
   get '/states/:state_id/rosens' => 'rosens#stateindex', as: 'rosen_index_state'
 
+  get '/companies/categories/:category_id' => 'companies#show', as: 'companies_show'
   get '/companies/:company_id/stations' => 'stations#companyindex', as: 'station_index_company'
   get '/companies/:company_id/rosens' => 'rosens#companyindex', as: 'rosen_index_company'
 
@@ -31,7 +32,7 @@ Rails.application.routes.draw do
   put '/stations/:station_id' => 'user_station_statuses#update'
 
   get '/rosens/:rosen_id' => 'rosens#show', as: 'rosen_detail'
-#  get '/rosens/:rosen_id/stations' => 'rosens#stationindex', as: 'station_index_rosen'
+  get '/rosens/:rosen_id/stations' => 'stations#rosenindex', as: 'station_index_rosen'
 
   get '/rosens/:rosen_id/edit' => 'user_section_statuses#edit', as: 'section_edit'
   patch '/rosens/:rosen_id' => 'user_section_statuses#update', as: 'user_section_status'

@@ -11,8 +11,7 @@
   <div class="links">
     <p>会社種類から選択</p>
     <ul>
-      <li><%= link_to "全鉄道会社", companies_path %></li>
-    <% @Categories.each do |c| %>
+      <li><%= link_to "全鉄道会社", companies_path %></li>    <% @Categories.each do |c| %>
       <li><%= link_to "#{c.name}", companies_show_path(c) %></li>
     <% end %>
     </ul>

@@ -11,18 +11,35 @@
 </header>
 <article>
 <% if flash[:alert] %>
-  <p id="caution"><%= flash[:alert] %></p>
+  <div id="caution">
+    <p><%= flash[:alert] %></p>
+  </div>
 <% end %>
+  <div class="links">
+    <ul>
+      <li><%= link_to @Station.name + '駅へ戻る', station_detail_path(@Station) %></li>
+    </ul>
+  </div>
   <div id="announce">
     <p>※日付を入力した場合、訪問チェックは自動で反映されます。</p>
   </div>
-  <dl>
+  <dl id="station_summary">
     <dt>駅名 （ふりがな）<dt>
     <dd><%= @Station.name %> （<%= @Station.name_ruby %>）</dd>
     <dt>都道府県<dt>
     <dd><%= @Station.state.name %></dd>
     <dt>会社名<dt>
     <dd><%= @Station.company.name %></dd>
+<% if !@Station.abolished_flag? %>
+    <dt>接続路線</dt>
+    <dd>
+      <ul>
+    <% @Rosens.each do |r| %>
+        <li><%= r.rosen.name %> （<%= r.rosen.start_station.name %>～<%= r.rosen.end_station.name %>）</li>
+    <% end %>
+      </ul>
+  </dd>
+<% end %>
   </dl>
   <p class="s_title">訪問記録</p>
 <%= form_for(@Status, :url => {:controller => 'user_station_statuses', :action => 'update'}) do |f| %>
@@ -40,5 +57,9 @@
   </table>
   <p><%= f.submit '更新する', data: {disable_with: "送信中..."} %></p>
 <% end %>
-  <p><%= link_to @Station.name + '駅へ戻る', station_detail_path(@Station) %></p>
+  <div class="links">
+    <ul>
+      <li><%= link_to @Station.name + '駅へ戻る', station_detail_path(@Station) %></li>
+    </ul>
+  </div>
 </article>

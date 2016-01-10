@@ -11,8 +11,18 @@
 </header>
 <article>
 <% if flash[:notice] %>
-  <p id="sub"><%= flash[:notice] %>
+  <div id="sub">
+    <p><%= flash[:notice] %></p>
+  </div>
 <% end %>
+  <div class="links">
+    <ul>
+      <li><%= link_to '乗車記録の編集', section_edit_path(@Rosen) %></li>
+<% if !@Rosen.abolished_flag? %>
+      <li><%= link_to @Rosen.name + ' 駅一覧', station_index_rosen_path(@Rosen) %></li>
+<% end %>
+    </ul>
+  </div>
   <table border="1">
     <col span="2" width="200" />
     <col span="3" width="80" />
@@ -47,4 +57,12 @@
       </tr>
     </tbody>
   </table>
-  <p><%= link_to '編集画面へ', section_edit_path(@Rosen) %></p></article>
+  <div class="links">  
+    <ul>
+      <li><%= link_to '乗車記録の編集', section_edit_path(@Rosen) %></li>
+<% if !@Rosen.abolished_flag? %>
+      <li><%= link_to @Rosen.name + ' 駅一覧', station_index_rosen_path(@Rosen) %></li>
+<% end %>
+    </ul>
+  </div>
+</article>

@@ -58,7 +58,7 @@ a, a:visited{
 }
 
 #edit{
-	background-color:#ffcccc;
+	background-color:#ccccff;
 	padding:2px 2px 2px 10px;
 }
 
@@ -69,7 +69,14 @@ a, a:visited{
 
 #sub{
 	font-weight:bold;
+	background-color:#ccffcc;
 	color:#009900;
+	padding:5px;
+	border:solid 1px #009900;
+}
+
+#sub p{
+	margin:0px;
 }
 
 #a_section{
@@ -84,17 +91,38 @@ a, a:visited{
 
 #caution{
 	font-weight:bold;
+	background-color:#ffdede;
 	color:#ff0000;
+	padding:5px;
+        border:solid 1px #ff0000;
+}
+
+#caution p{
+	margin:0px;
 }
 
 #maps{
 	margin:10px 0px;
 }
 
+dd ul{
+	margin-left:0px;
+	padding-left:0px;
+	list-style:none;
+}
+
+dd li{
+	margin-left:0px;
+}
+
 dt, #maps p, .s_title{
 	font-weight:bold;
 	padding-left:2px;
 	border-left:solid 5px #00cc66;
+}
+
+dd{
+	margin:3px 0px 10px 15px;
 }
 
 .st_left{
@@ -180,6 +208,22 @@ article {
 
 #search{
 	margin:0px 0px 10px 0px;
+}
+
+.links{
+	margin:10px 0px;
+}
+
+.links ul{
+        display:inline;
+        margin:0px;
+        padding:0px;
+}
+
+.links li{
+        display:inline;
+	margin:0px;
+        padding:5px;
 }
 
 #choose{

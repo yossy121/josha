@@ -31,8 +31,10 @@
 <%= form_for(@Rosen, :url => {:controller => 'user_section_statuses', :action => 'update'}) do |f| %>
   <table border="1">
     <col span="2" width="50" />
-    <col span="2" width="200" />
-    <col span="3" width="80" />
+    <col span="2" width="250" />
+    <col span="1" width="80" />
+    <col span="1" width="100" />
+    <col span="1" width="90" />
     <tbody>
       <tr>
         <th>始区間<%= radio_button "user_section_status", "startcheck", "0", {:checked => true, :style => "display:none;"} %></th>

@@ -35,12 +35,15 @@ class StationsController < ApplicationController
 
     @Rosens.each do |r|
 
+      $prev_station_id = 0
+      $next_station_id = 0
+
       $rosen_id = r.rosen_id
       $rosen_name = r.rosen.name
       $rosen_start_station_name = r.rosen.start_station.name
       $rosen_end_station_name = r.rosen.end_station.name
 
-      @PrevStation = Section.eager_load(:start_station, :end_station).where("sections.end_id = ? and sections.rosen_id = ?", params[:station_id], r.rosen_id).not_delete
+      @PrevStation = Section.eager_load(:start_station, :end_station).where("sections.end_id = ? and sections.rosen_id = ?", params[:station_id], r.rosen_id).not_abolish.not_delete
 
       if (@PrevStation.nil?) 
         $prev_station_name.nil
@@ -50,7 +53,7 @@ class StationsController < ApplicationController
         $prev_station_name = p.start_station.name
         $prev_station_id = p.start_station.id
       end
-      @NextStation = Section.eager_load(:start_station, :end_station).where("sections.start_id = ? and sections.rosen_id = ?", params[:station_id], r.rosen_id).not_delete
+      @NextStation = Section.eager_load(:start_station, :end_station).where("sections.start_id = ? and sections.rosen_id = ?", params[:station_id], r.rosen_id).not_abolish.not_delete
 
       @NextStation.each do |n|
         $next_station_name = n.end_station.name

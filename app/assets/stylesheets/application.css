@@ -128,16 +128,16 @@ dd{
 	margin:3px 0px 10px 15px;
 }
 
-.st_left{
+.prev_station{
 	text-align:left;
 }
 
-.st_center{
+.rosen_name{
 	text-align:center;
 	font-weight:bold;
 }
 
-.st_right{
+.next_station{
 	text-align:right;
 }
 

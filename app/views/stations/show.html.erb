@@ -34,36 +34,41 @@
     <dt>接続路線</dt>
     <dd>
       <table border="1">
+        <col span="1" width="200" />
+        <col span="1" width="300" />
+        <col span="1" width="200" />
         <tbody>
     <% @arr.each do |a| %>
     <% a.each do |a2| %>
           <tr>
-            <td>&lt;&lt; <%= link_to a2[4], station_detail_path(a2[5]) %></td>
-            <td><%= link_to a2[1] + " (" + a2[2] + "～" + a2[3] + ")", rosen_detail_path(a2[0]) %></td>
-            <td><%= link_to a2[6], station_detail_path(a2[7]) %> &gt;&gt;</td>
+            <td class="prev_station">&lt;<% if a2[5] != 0 %> <%= link_to a2[4], station_detail_path(a2[5]) %><% end %></td>
+            <td class="rosen_name"><%= link_to a2[1] + " (" + a2[2] + "～" + a2[3] + ")", rosen_detail_path(a2[0]) %></td>
+            <td class="next_station"><% if a2[7] != 0 %><%= link_to a2[6], station_detail_path(a2[7]) %> <% end %>&gt;</td>
           </tr>
     <% end %>
     <% end %>
         </tbody>
       </table>
-  </dd>
+    </dd>
 <% end %>
+    <dt>訪問記録</dt>
+    <dd>
+      <table border="1">
+        <col span="1" width="100" />
+        <col span="1" width="90" />
+        <tbody>
+          <tr>
+            <th>訪問日</th>
+            <th>訪問チェック</th>
+          </tr>
+          <tr>
+            <td class="date"><%= @Status.visit_day %></td>
+            <td class="chk"><% if @Status.visit_chk? %>訪問済み<% else %>未訪問<% end %></td>
+          </tr>
+        </tbody>
+      </table>
+    </dd>
   </dl>
-  <p class="s_title">訪問記録</p>
-  <table border="1">
-    <col span="1" width="100" />
-    <col span="1" width="90" />
-    <tbody>
-      <tr>
-        <th>訪問日</th>
-        <th>訪問チェック</th>
-      </tr>
-      <tr>
-        <td class="date"><%= @Status.visit_day %></td>
-        <td class="chk"><% if @Status.visit_chk? %>訪問済み<% else %>未訪問<% end %></td>
-      </tr>
-    </tbody>
-  </table>
   <div class="links">
     <ul>
       <li><%= link_to "訪問記録の編集", station_edit_path(@Station) %></li>

@@ -33,30 +33,43 @@
 <% if !@Station.abolished_flag? %>
     <dt>接続路線</dt>
     <dd>
-      <ul>
-    <% @Rosens.each do |r| %>
-        <li><%= r.rosen.name %> （<%= r.rosen.start_station.name %>～<%= r.rosen.end_station.name %>）</li>
+      <table border="1">
+        <col span="1" width="200" />
+        <col span="1" width="300" />
+        <col span="1" width="200" />
+        <tbody>
+    <% @arr.each do |a| %>
+    <% a.each do |a2| %>
+          <tr>
+            <td class="prev_station">&lt;<% if a2[5] != 0 %> <%= link_to a2[4], station_detail_path(a2[5]) %><% end %></td>
+            <td class="rosen_name"><%= link_to a2[1] + " (" + a2[2] + "～" + a2[3] + ")", rosen_detail_path(a2[0]) %></td>
+            <td class="next_station"><% if a2[7] != 0 %><%= link_to a2[6], station_detail_path(a2[7]) %> <% end %>&gt;</td>
+          </tr>
     <% end %>
-      </ul>
-  </dd>
+    <% end %>
+        </tbody>
+      </table>
+    </dd>
 <% end %>
-  </dl>
-  <p class="s_title">訪問記録</p>
+    <dt>訪問記録</dt>
+    <dd>
 <%= form_for(@Status, :url => {:controller => 'user_station_statuses', :action => 'update'}) do |f| %>
-  <table border="1">
-    <tbody>
-      <tr>
-        <th>訪問日</th>
-        <th>訪問チェック</th>
-      </tr>
-      <tr>
-        <td><%= f.date_select :visit_day, include_blank: true, ignore_date: false, use_month_numbers: true, start_year: (Time.now.year), end_year: 1872, default: (@Status.visit_day), date_separator: '/' %></td>
-        <td class="chk"><%= f.check_box :visit_chk %></td>
-      </tr>
-    </tbody>
-  </table>
-  <p><%= f.submit '更新する', data: {disable_with: "送信中..."} %></p>
+      <table border="1">
+        <tbody>
+          <tr>
+            <th>訪問日</th>
+            <th>訪問チェック</th>
+          </tr>
+          <tr>
+            <td><%= f.date_select :visit_day, include_blank: true, ignore_date: false, use_month_numbers: true, start_year: (Time.now.year), end_year: 1872, default: (@Status.visit_day), date_separator: '/' %></td>
+            <td class="chk"><%= f.check_box :visit_chk %></td>
+          </tr>
+        </tbody>
+      </table>
+      <p><%= f.submit '更新する', data: {disable_with: "送信中..."} %></p>
 <% end %>
+    <dd>
+  </dl>
   <div class="links">
     <ul>
       <li><%= link_to @Station.name + '駅へ戻る', station_detail_path(@Station) %></li>

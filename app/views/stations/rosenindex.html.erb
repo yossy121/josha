@@ -18,31 +18,12 @@
   <div id="announce">
     <p>※廃止された駅は表示されません。</p>
   </div>
-  <section class="summary">
-    <table border="1">
-      <col span="3" width="80" />
-      <tbody>
-        <tr>
-          <th>総営業駅数</th>
-          <th>訪問駅数</th>
-          <th>訪問率</th>
-        </tr>
-        <tr>
-          <td class="kilo"><%# @StationCount %></td>
-          <td class="kilo"><%# @VisitedCount %></td>
-    <%# if @StationCount == 0 %>
-          <td class="kilo">-.-%</td>
-    <%# else %>
-          <!--<td class="kilo"><%# number_with_precision((@VisitedCount.to_f / @StationCount.to_f) * 100, :precision => 3) %>%</td>-->
-    <%# end %>
-        </tr>
-      </tbody>
-    </table>
-  </section>
   <table border="1">
-    <col span="1" width="200" />
     <col span="1" width="250" />
+    <col span="1" width="300" />
     <col span="1" width="80" />
+<!--    <col span="1" width="100" />
+    <col span="1" width="90" />-->
     <tbody>
       <tr>
         <th>駅名</th>
@@ -51,14 +32,14 @@
       </tr>
     <% @Sections.each do |s| %>
       <tr>
-        <td><%= link_to s.start_station.name, station_detail_path(s) %></td>
+        <td><%= link_to s.start_station.name, station_detail_path(s.start_station.id) %></td>
         <td><%= s.start_station.name_ruby %></td>
         <td><%= s.start_station.state.name %></td>
       </tr>
     <% end %>
     <% @SectionsLast.each do |l| %>
       <tr>
-        <td><%= link_to l.end_station.name, station_detail_path(l) %></td>
+        <td><%= link_to l.end_station.name, station_detail_path(l.end_station.id) %></td>
         <td><%= l.end_station.name_ruby %></td>
         <td><%= l.end_station.state.name %></td>
       </tr>

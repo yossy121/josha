@@ -33,11 +33,19 @@
 <% if !@Station.abolished_flag? %>
     <dt>接続路線</dt>
     <dd>
-      <ul>
-    <% @Rosens.each do |r| %>
-        <li><%= r.rosen.name %> （<%= r.rosen.start_station.name %>～<%= r.rosen.end_station.name %>）</li>
+      <table border="1">
+        <tbody>
+    <% @arr.each do |a| %>
+    <% a.each do |a2| %>
+          <tr>
+            <td>&lt;&lt <%= link_to a2[4], station_detail_path(a2[5]) %></td>
+            <td><%= link_to a2[1] + " (" + a2[2] + "～" + a2[3] + ")", rosen_detail_path(a2[0]) %></td>
+            <td><%= link_to a2[6], station_detail_path(a2[7]) %> &gt;&gt;</td>
+          </tr>
     <% end %>
-      </ul>
+    <% end %>
+        </tbody>
+      </table>
   </dd>
 <% end %>
   </dl>

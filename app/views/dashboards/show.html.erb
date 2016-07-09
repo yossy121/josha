@@ -12,11 +12,57 @@
     <% if current_user?(current_user) %>
   <p><%# link_to '編集', edit_user_path, :id => current_user.id %></p>
     <% end %>
-  <h2>更新履歴</h2>
-  <dl>
-    <% @Infos.each do |s| %>
-    <dt><%= s.publishing_date %></dt>
-    <dd><%= s.title %></dd>
+  <section>
+    <h2>更新履歴</h2>
+    <dl>
+      <% @Infos.each do |s| %>
+      <dt><%= s.publishing_date %></dt>
+      <dd><%= s.title %></dd>
     <% end %>
-  </dl>
+    </dl>
+  </section>
+  <section class="summary">
+    <h2>乗車記録</h2>
+    <table border="1">
+      <col span="3" width="100" />
+      <tbody>
+        <tr>
+          <th>総営業キロ</th>
+          <th>総乗車キロ</th>
+          <th>乗車率</th>
+        </tr>
+        <tr>
+          <td class="kilo"><%= @Rosen_sum %></td>
+          <td class="kilo"><%= @Ride_sum %></td>
+    <% if @Rosen_sum == 0 %>
+          <td class="kilo">-.-%</td>
+    <% else %>
+          <td class="kilo"><%= number_with_precision((@Ride_sum.to_f / @Rosen_sum.to_f) * 100, :precision => 3) %>%</td>
+    <% end %>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+  <section class="summary">
+    <h2>訪問記録</h2>
+    <table border="1">
+      <col span="3" width="100" />
+      <tbody>
+        <tr>
+          <th>総営業駅数</th>
+          <th>総訪問駅数</th>
+          <th>訪問率</th>
+        </tr>
+        <tr>
+          <td class="kilo"><%= @StationCount %></td>
+          <td class="kilo"><%= @VisitedCount %></td>
+    <% if @StationCount == 0 %>
+          <td class="kilo">-.-%</td>
+    <% else %>
+          <td class="kilo"><%= number_with_precision((@VisitedCount.to_f / @StationCount.to_f) * 100, :precision => 3) %>%</td>
+    <% end %>
+        </tr>
+      </tbody>
+    </table>
+  </section>
 </article>

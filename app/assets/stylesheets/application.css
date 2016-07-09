@@ -54,11 +54,13 @@ a, a:visited{
 }
 
 #show{
+	font-size:22px;
 	background-color:#ffb84d;
 	padding:2px 2px 2px 10px;
 }
 
 #edit{
+	font-size:22px;
 	background-color:#ccccff;
 	padding:2px 2px 2px 10px;
 }
@@ -189,6 +191,13 @@ header > h1 {
 article {
 	font-size:14px;
 	margin:10px;
+}
+
+section h2{
+	font-size:18px;
+	background-color:#99ff99;
+	padding:4px;
+	border-radius:4px;
 }
 
 .summary {

@@ -38,7 +38,7 @@
     <% @arr.each do |a| %>
     <% a.each do |a2| %>
           <tr>
-            <td>&lt;&lt <%= link_to a2[4], station_detail_path(a2[5]) %></td>
+            <td>&lt;&lt; <%= link_to a2[4], station_detail_path(a2[5]) %></td>
             <td><%= link_to a2[1] + " (" + a2[2] + "～" + a2[3] + ")", rosen_detail_path(a2[0]) %></td>
             <td><%= link_to a2[6], station_detail_path(a2[7]) %> &gt;&gt;</td>
           </tr>
